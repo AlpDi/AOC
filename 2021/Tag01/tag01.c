@@ -28,4 +28,7 @@ int main(){
         }
         printf("%d  %d\n",i,  j);
     }
+    fclose(fp);
+    
+    return 0;
 }

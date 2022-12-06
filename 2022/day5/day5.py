@@ -1,5 +1,5 @@
 import re
-with open('input.txt') as input_file:
+with open('inputTest.txt') as input_file:
     lines = [line.rstrip() for line in input_file]
 
 
@@ -26,7 +26,7 @@ def crane(crates, lines, crane_name):
             size = int(move.split("  ")[0])
             source = int(move.split("  ")[1])
             dest = int(move.split("  ")[2])
-            print(size, source, dest)
+            #print(size, source, dest)
             if crane_name == "CrateMover 9000":
                 for _ in range(size):
                     crates[dest - 1].append(crates[source-1].pop())
@@ -35,16 +35,16 @@ def crane(crates, lines, crane_name):
                 for _ in range(size):
                     bigStorage.append(crates[source-1].pop())
                 crates[dest - 1] += bigStorage[::-1]
-            print(crates)
+            #print(crates)
     return crates
 
 
 
 if __name__ == "__main__":
     crates_b = load(lines)
-    print(crates_b)
+    #print(crates_b)
     #crates_whack = crane(crates_b, lines,"CrateMover 9000")
     crates_efficint = crane(crates_b, lines,"CrateMover 9001") 
     
-    for i in range(len(crates_efficint)):
-        print(crates_efficint[i].pop())
+    #for i in range(len(crates_efficint)):
+        #print(crates_efficint[i].pop())

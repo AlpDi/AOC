@@ -1,12 +1,6 @@
 import fileinput
 from collections import Counter
 
-
-
-    
-
-    
-
 counter = 0
 sum1 = 0
 

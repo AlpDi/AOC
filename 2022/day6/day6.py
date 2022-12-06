@@ -1,6 +1,6 @@
 import string
 
-input_file = open("inputTest.txt")
+input_file = open("input.txt")
 buffer = input_file.read()
 
 def subroutine(lines):
@@ -9,10 +9,10 @@ def subroutine(lines):
     som = 14
     for i in range(len(lines)-som+1):
         scan = lines[i:i+som]
-        print(set(scan))
+        #print(set(scan))
         if len(set(scan)) == som:
-            print(scan,"\n")
-            print(lines.find(scan) + som)
+            #print(scan,"\n")
+            print(i + som)
             return 1
 
    

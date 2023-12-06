@@ -6,9 +6,10 @@ testInput = "testinput.txt"
 input = "input.txt"
 
 pile = []
-stack = []
+#stack = []
 
 with open(input) as file:
+    
     for line in file:
         line = line.strip()
         win = [x for x in line.split(":")[1].split("|")[0].split(" ") if x != '']
@@ -25,8 +26,8 @@ with open(input) as file:
 
 pile2 = {}
 
-total = []
-
+cards = [1 for _ in open(input)]
+total = 0
 with open(input) as file:
     for count, line in enumerate(file):
         line = line.strip()
@@ -37,14 +38,26 @@ with open(input) as file:
             if el in win:
                 score += 1
         pile2[count +1] = score
-        stack.append(count + 1)
+        
+
+        """ stack.append(count + 1)
     
     while(stack):
         i = stack[0]
         j = pile2[i]
         for x in range(j):
             stack.append(i+x+1)
-        total.append(stack.pop(0))
+            
+        stack.pop(0)
+        total += 1
 
-    print(len(total))
+    print(total) """ #whacko solution
+    print(pile2)
+    print(cards)
+    for k in pile2:
+        for i in range(pile2[k]):
+            cards[k + i] += cards[k]
+    print(sum(cards))
+    
+
  

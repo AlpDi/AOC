@@ -1,5 +1,6 @@
 import fileinput
 import collections 
+import math
 
 
 testInput = "testinput.txt"
@@ -29,10 +30,11 @@ class S2D:
 
     
 
-with open(testInput) as file:
+with open(input) as file:
     lines = file.read().strip().split("\n")
     seeds = [int(x) for x in lines[0].split(":")[1].split(" ") if x != ""]
-    seedsMap = []
+    seedMaps: list[S2D] = []
+    curMap = None
     for line in lines[1:]:
         if line == "":
             continue
@@ -41,9 +43,21 @@ with open(testInput) as file:
             source = line.split("-to-")[0]
             dest = line.split("-to-")[1].split(" ")[0]
             print(source, dest)
-            seedsMap.append(S2D(source,dest))
+            curMap = S2D(source, dest)
+            seedMaps.append(curMap)
+        else:
+            curMap.add(*[int(x) for x in line.split(" ")])
+
+    minLoc = math.inf
+
+    for seed in seeds:
+        for sm in seedMaps:
+            seed = sm.get_dest(seed)
+        minLoc = min(minLoc, seed)
+    print(minLoc)
+
             
-        #TODO: string into map values via [*[x in ... seedmap]]
+        
 
        
 

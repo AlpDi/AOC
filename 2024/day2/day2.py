@@ -1,5 +1,18 @@
 def part1(data):
-    pass
+    counter = 0
+    for entry in data:
+        rep = [int(x) for x in entry.split()]
+        
+        if rep == sorted(rep) or rep == sorted(rep)[::-1]:
+            pairs = list(zip(rep, rep[1:]))
+            diffs = list(map(lambda x: abs(x[0]-x[1]), pairs))
+            isSafe = list(map(lambda x: x < 4 and x > 0, diffs))
+            
+            if all(isSafe): counter += 1
+    return counter
+
+
+    return counter
 
 def part2(data):
     pass

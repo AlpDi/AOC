@@ -1,12 +1,41 @@
+import re
+
 def part1(data):
-    pass
+
+
+
+    ins = re.findall("mul\([0-9]*,[0-9]*\)", data)
+
+    nums = [x[4:-1].split(",") for x in ins]
+    nums = [[int(item) for item in sublist] for sublist in nums]
+
+    result = sum(list(map(lambda x: x[0] * x[1], nums)))
+
+
+    return result
 
 def part2(data):
-    pass
+
+    result = 0
+
+    ins = re.findall("mul\([0-9]*,[0-9]*\)|do\(\)|don't\(\)", data)
+
+    flag = True
+
+    for match in ins:
+        if match == "do()":
+            flag = True
+        elif match == "don't()":
+            flag = False
+        else:
+            if flag:
+                x,y = map(int, match[4:-1].split(","))
+                result += x*y
+
+    return result
 
 def parse_input(filename):
-    with open(filename) as f:
-        return [line.strip() for line in f.readlines()]
+    return open(filename).read()
 
 def main():
     # Test input

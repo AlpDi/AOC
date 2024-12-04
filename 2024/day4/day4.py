@@ -1,12 +1,16 @@
 def part1(data):
     counter = 0
+    c2 = 0
     for i in range(len(data)):
         for j in range(len(data[i])):
+            c2 = is_cross(data,i,j,c2)
             if data[i][j] == 'X':
                 counter = is_horMatch(data, i, j, counter)
                 counter = is_vertMatch(data, i, j, counter)
                 counter = is_diaMatch(data, i, j, counter)
+    print(c2)
     return counter
+
 
 def is_horMatch(data, y, x,c):
     if x < len(data[y]) - 3:
@@ -52,6 +56,16 @@ def is_diaMatch(data, y, x,c):
                 c+=1
     return c 
 
+def is_cross(data, y, x, c):
+    try:
+        #print(data[y][x] + data[y][x+2] + data[y+1][x+1] + data[y+2][x] + data[y+2][x+2])
+        if (data[y][x] + data[y][x+2] + data[y+1][x+1] + data[y+2][x] + data[y+2][x+2]) in ["MSAMS" ,"MMASS" , "SSAMM" , "SMASM"]:
+        #oben links     oben rechts    mitte            unten links    unten rechts
+            #print(data[y][x] + data[y][x+2] + data[y+1][x+1] + data[y+2][x] + data[y+2][x+2])
+            c += 1 
+    except:
+        pass
+    return c
 
 
 

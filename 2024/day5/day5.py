@@ -3,27 +3,43 @@ def part1(data):
     rules = data[0]
     updates = data[1]
     for update in updates:
-        flag = False
         order = {}
         nums = [int(x) for x in update.split(",")]
         for i in range(len(nums)):
             order[nums[i]] = i
-        for rule in rules:
-            one = int(rule[:2])
-            two = int(rule[3:])
-            if one in order and two in order:
-                if order[one] < order[two]:
-                    pass
-                    flag = True
-                else: 
-                    #print(one,two,update)
-                    flag = False
-                    break
-            else: pass
-        if flag:
-            #print(nums[len(nums)//2])
-            res += nums[len(nums)//2]
+        result = is_ordered(order, rules)
+        if result[0]:
+            res += result[1]
     return res
+
+
+def is_ordered(order, rules):
+    flag = False
+    for rule in rules:
+        one = int(rule[:2])
+        two = int(rule[3:])
+        if one in order and two in order:
+            if order[one] < order[two]:
+                pass
+                flag = True
+            else: 
+                #print(one,two,update)
+                flag = False
+                break
+        else: pass
+    return flag, list(order)[len(list(order))//2]
+
+def order(order, rules):
+    result = is_ordered(order, rules)
+    if result[0]:
+        return result[1]
+    else:
+        pass
+        
+
+    
+
+
 
 
 
